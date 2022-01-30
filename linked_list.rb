@@ -1,29 +1,32 @@
 require_relative 'node'
 
 class LinkedList
-    attr_accessor :head
+    attr_accessor :head, :tail
     
     def initialize
         # place to start --> head
         @head = nil
+        @tail = nil
     end
 
     def add(value)
         # first check if the linked list is empty --> head == nil
-        if @head == nil
+        if @head.nil?
             @head = Node.new(value)
+            @tail = Node.new(value)
         else
             # if there is already a head, the linked list is not empty
             # find the last node in our linked list and set the next property of that node to a new node that we are going to create
             last_node = @head
-
+            
             while !last_node.next.nil? # we are not at the end of that list
                 # we'll go through the while loop until we find the last node of the list that is set to nil
                 last_node = last_node.next
             end
 
             # we are at the end of the list --> last_node == nil
-            last_node.next = Node.new(value)
+            last_node.next = Node.new(value, nil, last_node)
+            @tail = last_node.next
         end
     end
 
@@ -97,8 +100,11 @@ end
 
 linked_list = LinkedList.new
 linked_list.add(10)
-linked_list.add(20)
-linked_list.remove(10)
-linked_list.add(40)
+# linked_list.add(30)
+# linked_list.add(40)
+# p linked_list.tail
 
-p linked_list
+linked_list
+linked_list.add(90)
+linked_list.add(100)
+linked_list.print_all
