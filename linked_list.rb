@@ -12,8 +12,8 @@ class LinkedList
     def add(value)
         # first check if the linked list is empty --> head == nil
         if @head.nil?
-            @head = Node.new(value)
-            @tail = Node.new(value)
+            @head = Node.new(value, nil, nil)
+            @tail = Node.new(value, nil, nil)
         else
             # if there is already a head, the linked list is not empty
             # find the last node in our linked list and set the next property of that node to a new node that we are going to create
@@ -48,7 +48,7 @@ class LinkedList
         current = @head
         index = 1
         
-        while !current.nil?
+        until current.nil?
             puts "#{index}. #{current.value}"
         
             current = current.next
@@ -96,15 +96,25 @@ class LinkedList
 
         print_all
     end
+
+    def remove_duplicates(head)
+        return nil if @head.nil?
+
+        current = @head
+
+        until current.nil?
+            while current.next && current.value == current.next.value
+                current.next = current.next.next
+            end
+            current = current.next
+        end
+
+        return @head
+    end
 end
 
 linked_list = LinkedList.new
-linked_list.add(10)
-# linked_list.add(30)
-# linked_list.add(40)
-# p linked_list.tail
-
-linked_list
-linked_list.add(90)
-linked_list.add(100)
+arr = [5,6,7,7,7,8,9]
+arr.each { |n| linked_list.add(n) }
+linked_list.remove_duplicates(linked_list.head)
 linked_list.print_all
