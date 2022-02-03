@@ -2,6 +2,6 @@
 
 Hello World! 🌎 This is my first Linked List project 🤓.
 
-🚧 README ON PROCESS 🚧
+🚧 README IN PROCESS 🚧
 
 Be sure to check my <a href="https://guillemdlopez.github.io/portfolio/" target="_blank">portfolio</a> in the meantime.
